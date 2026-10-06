@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Қонаев дәуірі және Алматының сәулеті</title>
+<meta name="description" content="Цифрлық тарихи портрет: Д.А. Қонаев дәуірі және Алматының сәулеті. Авторы: Дария Джетылова, Өркен мектебі.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/cesium@1.145.0/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+<style>
+:root{
+  --bg:#F1F2EF;--bg2:#E4E7E5;--card:#FFFFFF;--ink:#10192A;--soft:#526073;--line:#CFD5D8;
+  --gold:#C98A12;--teal:#13827E;--red:#B23B2C;--night:#0A1222;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0A1222;--bg2:#0F1A2E;--card:#14213A;--ink:#EEF2F6;--soft:#9EABBD;--line:#24324C;
+  --gold:#F2B744;--teal:#3CC9C2;--red:#EE6D5B;}}
+:root[data-theme="dark"]{--bg:#0A1222;--bg2:#0F1A2E;--card:#14213A;--ink:#EEF2F6;--soft:#9EABBD;--line:#24324C;
+  --gold:#F2B744;--teal:#3CC9C2;--red:#EE6D5B;}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"PT Serif",Georgia,serif;font-size:1.0625rem;line-height:1.65}
+h1,h2,h3,.o{font-family:Oswald,"Arial Narrow",Arial,sans-serif;font-weight:500;line-height:1.08;margin:0}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+button{font:inherit}
+
+/* ================= 3D HERO ================= */
+#stage{position:relative;height:100svh;min-height:560px;background:#070d1a;color:#fff;overflow:hidden}
+#gl{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
+.vign{position:absolute;inset:0;pointer-events:none;background:
+  linear-gradient(180deg,rgba(6,11,22,.85) 0%,rgba(6,11,22,0) 34%,rgba(6,11,22,0) 62%,rgba(6,11,22,.9) 100%)}
+.title{position:absolute;left:0;right:0;top:calc(env(safe-area-inset-top,0px) + 26px);pointer-events:none}
+.title h1{font-size:clamp(2rem,5vw,4.4rem);font-weight:600;letter-spacing:.005em;max-width:13ch;text-shadow:0 4px 30px rgba(0,0,0,.5)}
+.title p{font-size:clamp(1rem,1.6vw,1.2rem);max-width:46ch;color:#C9D3E2;margin:14px 0 0}
+.title .by{font-family:Oswald,Arial,sans-serif;font-size:.95rem;color:#F2B744;margin-top:12px}
+.year-big{position:absolute;right:22px;top:calc(env(safe-area-inset-top,0px) + 22px);font-family:Oswald,Arial,sans-serif;font-weight:700;
+  font-size:clamp(3.4rem,10vw,8.5rem);line-height:.9;color:transparent;-webkit-text-stroke:1.5px rgba(242,183,68,.9);pointer-events:none;text-align:right}
+.year-big small{display:block;-webkit-text-stroke:0;color:#9EABBD;font-size:.95rem;font-weight:400;letter-spacing:.02em;margin-top:6px}
+.labels{position:absolute;inset:0;pointer-events:none}
+.lab{position:absolute;transform:translate(-50%,-100%);pointer-events:auto;cursor:pointer;background:rgba(10,18,34,.78);border:1px solid rgba(242,183,68,.55);
+  color:#fff;padding:5px 10px 5px 8px;border-radius:20px;font-family:Oswald,Arial,sans-serif;font-size:.85rem;white-space:nowrap;display:flex;gap:7px;align-items:center;
+  backdrop-filter:blur(6px);transition:opacity .4s, transform .2s}
+.lab::after{content:"";position:absolute;left:50%;bottom:-9px;width:1px;height:9px;background:rgba(242,183,68,.8)}
+.lab b{color:#F2B744;font-weight:500}
+.lab:hover,.lab.on{background:#F2B744;color:#10192A}
+.lab:hover b,.lab.on b{color:#10192A}
+.lab.hide{opacity:0;pointer-events:none}
+.dock{position:absolute;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 18px)}
+.dock .wrap{display:flex;flex-direction:column;gap:12px}
+.time{display:flex;align-items:center;gap:14px;background:rgba(10,18,34,.72);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:12px 16px;backdrop-filter:blur(10px)}
+.time span{font-family:Oswald,Arial,sans-serif;color:#9EABBD;font-size:.9rem}
+.time input{flex:1;accent-color:#F2B744;height:28px}
+.ctrls{display:flex;gap:8px;flex-wrap:wrap}
+.cb{background:rgba(10,18,34,.72);border:1px solid rgba(255,255,255,.18);color:#fff;border-radius:30px;padding:9px 16px;cursor:pointer;
+  font-family:Oswald,Arial,sans-serif;font-size:.95rem;backdrop-filter:blur(10px);display:inline-flex;align-items:center;gap:8px}
+.cb:hover{border-color:#F2B744}
+.cb.main{background:#F2B744;color:#10192A;border-color:#F2B744;font-weight:500}
+.cb .dot{width:8px;height:8px;border-radius:50%;background:#EE6D5B;box-shadow:0 0 10px #EE6D5B}
+.caption{position:absolute;left:22px;bottom:calc(env(safe-area-inset-bottom,0px) + 150px);max-width:min(460px,calc(100% - 44px));background:rgba(10,18,34,.85);
+  border-left:4px solid #F2B744;padding:16px 18px;border-radius:4px;backdrop-filter:blur(10px);opacity:0;transform:translateY(10px);transition:.5s;pointer-events:none}
+.caption.show{opacity:1;transform:none}
+.caption .k{font-family:Oswald,Arial,sans-serif;color:#F2B744;font-size:.9rem}
+.caption h3{font-size:1.5rem;margin:4px 0 6px}
+.caption p{margin:0;color:#D5DDE8;font-size:.98rem;line-height:1.5}
+.loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:Oswald,Arial,sans-serif;color:#9EABBD;letter-spacing:.04em;transition:opacity .6s}
+
+/* drawer */
+.drawer{position:fixed;top:0;right:0;height:100%;width:min(460px,100%);background:var(--card);color:var(--ink);z-index:50;transform:translateX(105%);
+  transition:transform .45s cubic-bezier(.2,.8,.2,1);overflow-y:auto;box-shadow:-20px 0 60px rgba(0,0,0,.35);
+  padding:calc(env(safe-area-inset-top,0px) + 22px) 24px calc(env(safe-area-inset-bottom,0px) + 30px)}
+.drawer.open{transform:none}
+.drawer .x{position:absolute;right:16px;top:calc(env(safe-area-inset-top,0px) + 14px);background:none;border:1px solid var(--line);color:var(--ink);border-radius:50%;width:38px;height:38px;cursor:pointer;font-size:1.1rem}
+.drawer .yr{font-family:Oswald,Arial,sans-serif;font-weight:700;font-size:4rem;line-height:1;color:var(--gold)}
+.drawer h3{font-size:1.9rem;margin:6px 0 12px;padding-right:40px}
+.drawer p{margin:0 0 12px}
+.drawer .why{border-left:3px solid var(--teal);padding-left:12px;color:var(--soft);font-size:.97rem}
+.drawer h4{font-family:Oswald,Arial,sans-serif;font-weight:500;font-size:1.05rem;margin:22px 0 8px}
+.cmp{position:relative;aspect-ratio:4/3;border-radius:8px;overflow:hidden;user-select:none;background:var(--bg2)}
+.cmp .ly{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:14px;font-family:Oswald,Arial,sans-serif}
+.cmp .ly img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cmp .then{background:repeating-linear-gradient(45deg,#b7a685 0 12px,#c6b694 12px 24px);color:#3b2f1c}
+.cmp .now{background:repeating-linear-gradient(-45deg,#13827E 0 12px,#1d958f 12px 24px);color:#fff;clip-path:inset(0 0 0 50%)}
+.cmp .bar{position:absolute;top:0;bottom:0;left:50%;width:3px;background:#fff;pointer-events:none;box-shadow:0 0 8px rgba(0,0,0,.4)}
+.cmp .tg{position:absolute;bottom:8px;font-family:Oswald,Arial,sans-serif;font-size:.8rem;background:rgba(0,0,0,.6);color:#fff;padding:2px 9px;border-radius:10px;z-index:2}
+.cmp .tg.l{left:8px}.cmp .tg.r{right:8px}
+.cmp input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0;z-index:3}
+.vslot{aspect-ratio:16/9;border-radius:8px;background:var(--bg2);border:1px dashed var(--line);display:flex;align-items:center;justify-content:center;text-align:center;color:var(--soft);font-family:Oswald,Arial,sans-serif;padding:14px}
+.vslot video{width:100%;height:100%;border-radius:8px;object-fit:cover}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.pb{background:var(--gold);color:#10192A;border:none;border-radius:30px;padding:11px 18px;cursor:pointer;font-family:Oswald,Arial,sans-serif;font-size:1rem}
+.pb.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+
+/* 3D model modal */
+.modal{position:fixed;inset:0;z-index:60;background:rgba(5,9,18,.92);display:none;align-items:center;justify-content:center;padding:20px}
+.modal.open{display:flex}
+.mbox{width:min(760px,100%);height:min(620px,100%);background:#0F1A2E;border-radius:14px;position:relative;overflow:hidden;display:flex;flex-direction:column;color:#fff}
+.mbox header{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;font-family:Oswald,Arial,sans-serif;font-size:1.2rem}
+.mbox header button{background:none;border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:50%;width:36px;height:36px;cursor:pointer}
+model-viewer{flex:1;width:100%;--poster-color:transparent;background:radial-gradient(circle at 50% 40%,#1c2c4a,#0A1222)}
+.arbtn{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);background:#F2B744;color:#10192A;border:none;border-radius:30px;padding:12px 22px;font-family:Oswald,Arial,sans-serif;font-size:1rem;cursor:pointer}
+.mnote{padding:10px 18px 14px;font-size:.88rem;color:#9EABBD}
+
+/* ================= CONTENT ================= */
+section{padding:96px 0;position:relative}
+.kick{font-family:Oswald,Arial,sans-serif;color:var(--gold);font-size:1.05rem;margin:0 0 14px}
+section h2{font-size:clamp(2.2rem,5vw,4rem);font-weight:600;max-width:18ch;margin-bottom:26px}
+.lede{font-size:1.2rem;color:var(--soft);max-width:60ch;margin:0 0 40px}
+
+.q{font-family:Oswald,Arial,sans-serif;font-weight:400;font-size:clamp(1.7rem,3.6vw,2.9rem);line-height:1.2;max-width:26ch;margin:0 0 56px}
+.q::before{content:"";display:block;width:80px;height:6px;background:var(--gold);margin-bottom:22px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+.cols h3{font-size:1.4rem;margin-bottom:10px;color:var(--teal)}
+.cols ol{margin:0;padding-left:1.3em}.cols li{margin-bottom:8px}
+.newband{margin-top:64px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line)}
+.newband div{padding:26px 22px 0 0}
+.newband .n{font-family:Oswald,Arial,sans-serif;font-weight:700;font-size:2.6rem;color:var(--gold);line-height:1}
+.newband p{margin:10px 0 0;font-size:.98rem}
+
+/* timeline horizontal */
+#life{background:var(--bg2)}
+.hscroll{display:flex;gap:18px;overflow-x:auto;padding:6px 22px 26px;scroll-snap-type:x mandatory;max-width:100%}
+.hscroll::-webkit-scrollbar{height:8px}.hscroll::-webkit-scrollbar-thumb{background:var(--line);border-radius:4px}
+.tc{flex:0 0 260px;scroll-snap-align:start;background:var(--card);border-radius:10px;padding:22px;border-top:4px solid var(--line);position:relative}
+.tc.key{border-top-color:var(--gold)}
+.tc .y{font-family:Oswald,Arial,sans-serif;font-weight:600;font-size:2rem;line-height:1;color:var(--ink)}
+.tc.key .y{color:var(--gold)}
+.tc p{margin:12px 0 0;font-size:.98rem}
+.hint{font-size:.9rem;color:var(--soft)}
+
+/* dam */
+#dam{background:#0A1222;color:#EEF2F6}
+#dam .lede{color:#B5C1D2}
+.damgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:10px}
+.damgrid div{border-top:3px solid #F2B744;padding-top:20px}
+.damgrid .d{font-family:Oswald,Arial,sans-serif;font-weight:700;font-size:3.4rem;line-height:1;color:#F2B744}
+.damgrid h3{font-size:1.3rem;margin:10px 0 8px}
+.damgrid p{margin:0;color:#C9D3E2;font-size:.98rem}
+.bigq{font-family:Oswald,Arial,sans-serif;font-weight:300;font-size:clamp(1.6rem,3.4vw,2.6rem);line-height:1.25;max-width:24ch;margin:64px 0 26px}
+
+/* era */
+.sides{display:grid;grid-template-columns:1fr 1fr;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+.sides>div{padding:30px;background:var(--card)}
+.sides>div+div{border-left:1px solid var(--line)}
+.sides h3{font-size:1.5rem;margin-bottom:12px}
+.sides .p h3{color:var(--teal)}.sides .m h3{color:var(--red)}
+.sides ul{margin:0;padding-left:1.2em}.sides li{margin-bottom:10px}
+.verdict{margin-top:28px;padding:26px;border:2px dashed var(--gold);border-radius:12px}
+.verdict h3{font-size:1.3rem;margin-bottom:8px}
+.ph{color:var(--soft);font-style:italic}
+
+/* survey & quiz */
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.sq{background:var(--card);border-radius:12px;padding:22px;border:1px solid var(--line)}
+.sq h3{font-family:"PT Serif",Georgia,serif;font-weight:700;font-size:1.02rem;line-height:1.4;margin-bottom:14px}
+.brow{display:grid;grid-template-columns:88px 1fr 42px;align-items:center;gap:10px;margin-bottom:8px;font-size:.93rem}
+.track{height:12px;background:var(--bg2);border-radius:6px;overflow:hidden}.fill{height:100%;width:0;background:var(--teal);transition:width 1s}
+.empty{padding:14px;border:1px dashed var(--line);border-radius:8px;color:var(--soft);font-size:.93rem}
+.quiz{margin-top:44px;background:#0A1222;color:#EEF2F6;border-radius:16px;padding:34px;position:relative;overflow:hidden}
+.quiz h3{font-size:clamp(1.5rem,3vw,2.2rem);max-width:22ch}
+.quiz .qq{font-size:1.25rem;margin:22px 0 16px}
+.quiz .qq b{font-family:Oswald,Arial,sans-serif;font-weight:500;color:#F2B744}
+.opts{display:flex;flex-wrap:wrap;gap:10px}
+.opts button{font-family:Oswald,Arial,sans-serif;font-size:1.3rem;padding:12px 26px;border:2px solid rgba(255,255,255,.3);background:transparent;color:#fff;border-radius:8px;cursor:pointer}
+.opts button:hover:not(:disabled){border-color:#F2B744}
+.opts .ok{background:#3CC9C2;border-color:#3CC9C2;color:#0A1222}.opts .no{background:#EE6D5B;border-color:#EE6D5B}
+.qf{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:18px;min-height:46px;flex-wrap:wrap}
+
+/* voices */
+.vgrid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.voice{background:var(--card);border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+.voice .vslot{border-radius:0;border:none;border-bottom:1px dashed var(--line)}
+.voice blockquote{margin:0;padding:22px;font-size:1.08rem}
+.voice cite{display:block;margin-top:10px;font-style:normal;font-family:Oswald,Arial,sans-serif;color:var(--soft);font-size:.95rem}
+
+/* sources */
+ol.src{padding-left:1.4em;margin:0;max-width:72ch}ol.src li{margin-bottom:10px}
+.ainote{margin-top:30px;padding-top:18px;border-top:1px solid var(--line);color:var(--soft);font-size:.95rem;max-width:72ch}
+footer{padding:40px 0 56px;color:var(--soft);font-size:.92rem;border-top:1px solid var(--line)}
+.themeb{position:fixed;right:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 16px);z-index:40;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:50%;width:44px;height:44px;cursor:pointer;font-size:1.1rem;box-shadow:0 6px 20px rgba(0,0,0,.2)}
+
+@media (max-width:860px){
+  .cols,.sides,.vgrid,.damgrid,.sgrid{grid-template-columns:1fr}
+  .newband{grid-template-columns:1fr 1fr}
+  .sides>div+div{border-left:none;border-top:1px solid var(--line)}
+  .year-big{top:auto;bottom:calc(env(safe-area-inset-bottom,0px) + 168px);right:18px}
+  .caption{bottom:calc(env(safe-area-inset-bottom,0px) + 168px)}
+  .title p{display:none}
+  section{padding:68px 0}
+  .lab{font-size:.75rem;padding:4px 8px}
+}
+
+#cesium{position:absolute;inset:0}
+#cesium .cesium-viewer,#cesium .cesium-widget{width:100%;height:100%}
+#cesium .cesium-widget-credits{bottom:4px!important;left:8px!important;z-index:5;opacity:.85}
+.cesium-viewer-bottom{z-index:5}
+.dock{bottom:calc(env(safe-area-inset-bottom,0px) + 40px)!important}
+.caption{bottom:calc(env(safe-area-inset-bottom,0px) + 170px)!important}
+.lab.future{background:rgba(60,60,70,.75);border-color:rgba(238,109,91,.7);color:#d8d8d8}
+.lab.future b{color:#EE6D5B}
+.lab.future::before{content:"әлі жоқ";font-size:.7rem;color:#EE6D5B;margin-right:2px}
+.err{position:absolute;inset:0;display:none;align-items:center;justify-content:center;text-align:center;padding:30px;color:#C9D3E2;font-family:Oswald,Arial,sans-serif;z-index:4;background:#070d1a}
+.err.show{display:flex}
+@media (max-width:860px){.year-big{bottom:calc(env(safe-area-inset-bottom,0px) + 190px)!important}.caption{bottom:calc(env(safe-area-inset-bottom,0px) + 190px)!important}}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="cesium"></div>
+  <div class="vign" style="z-index:1"></div>
+  <div class="loading" id="loading" style="z-index:3;background:#070d1a">Нақты Алматы жүктелуде…</div>
+  <div class="err" id="err"></div>
+  <div class="labels" id="labels" style="z-index:2"></div>
+  <div class="title" style="z-index:2"><div class="wrap">
+    <h1>Қонаев дәуірі және Алматының сәулеті</h1>
+    <p>Бұл — нақты Алматы. Уақыт сызғышын жылжытып, қай нысанның қай жылы пайда болғанын көріңіз. Кез келген белгіні басып, тарихын ашыңыз.</p>
+    <div class="by">Дария Джетылова · 10-сынып · Өркен мектебі</div>
+  </div></div>
+  <div class="year-big" id="yearBig" style="z-index:2">2026<small>Алматы, жыл</small></div>
+  <div class="caption" id="caption" style="z-index:3"><div class="k" id="capK"></div><h3 id="capH"></h3><p id="capP"></p></div>
+  <div class="dock" style="z-index:3"><div class="wrap">
+    <div class="ctrls">
+      <button class="cb main" id="tourBtn">▶ 3D тур</button>
+      <button class="cb" id="selBtn"><span class="dot"></span>1973 жылғы сел</button>
+      <button class="cb" id="homeBtn">⌂ Бүкіл қала</button>
+      <button class="cb" id="downBtn">Зерттеуге өту ↓</button>
+    </div>
+    <div class="time"><span>1960</span><input type="range" id="year" min="1960" max="2026" value="2026" aria-label="Жыл"><span>2026</span></div>
+  </div></div>
+</div>
+
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <button class="x" id="dClose" aria-label="Жабу">✕</button>
+  <div id="dBody"></div>
+</aside>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="3D модель">
+  <div class="mbox">
+    <header><span id="mTitle">3D модель</span><button id="mClose" aria-label="Жабу">✕</button></header>
+    <div id="mHost" style="flex:1;display:flex;position:relative"></div>
+    <div class="mnote">Модельді саусақпен айналдырыңыз, екі саусақпен үлкейтіңіз. AR батырмасы телефонда модельді бөлмеңізге «қояды». Модель — жеңілдетілген көркем бейне.</div>
+  </div>
+</div>
+<main>
+<section id="research">
+  <div class="wrap">
+    <p class="kick">Зерттеу</p>
+    <p class="q">Қонаевтың басшылығы Алматының бүгінгі келбетіне қандай із қалдырды?</p>
+    <div class="cols">
+      <div>
+        <h3>Мақсаты</h3>
+        <p>Д.А. Қонаевтың Алматы қаласының дамуына қосқан үлесін нақты сәулет нысандары мен тарихи деректер арқылы зерттеп, оның мұрасын цифрлық тарихи портрет түрінде таныстыру және авторлық баға беру.</p>
+        <h3 style="margin-top:30px">Болжам</h3>
+        <p>Алматының бүгінгі негізгі сәулеттік және инженерлік нысандарының едәуір бөлігі Қонаев дәуірінде салынған. Бұл оның шешімдері қаланың келбеті мен қауіпсіздігіне шешуші ықпал еткенін көрсетеді. Ал жастар бұл байланысты аз біледі.</p>
+      </div>
+      <div>
+        <h3>Міндеттері</h3>
+        <ol>
+          <li>Қонаевтың өмір жолын дәуірдің тарихи-қоғамдық жағдайымен байланыстыра зерттеу.</li>
+          <li>Оның басшылығы кезінде салынған нысандарды анықтап, тарихын кемінде үш дереккөз бойынша салыстыру.</li>
+          <li>Нысандардың сол кездегі және қазіргі фотосуреттерін жинап, далалық бақылау жүргізу.</li>
+          <li>Куәгерлермен сұхбат өткізу, жастардың хабардарлығын сауалнама арқылы анықтау.</li>
+          <li>Дәуірдің жетістіктері мен қайшылықтарын талдап, авторлық баға беру.</li>
+          <li>Нәтижені нақты 3D қала моделі, уақыт желісі және AR модельдер арқылы ұсыну.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="newband">
+      <div><div class="n">3D</div><p>Қонаев мұрасы алғаш рет фотореалистік 3D Алматының үстіне біріктірілді.</p></div>
+      <div><div class="n">1960→</div><p>Уақыт сызғышы қай жылы қай нысан пайда болғанын нақты қала үстінде көрсетеді.</p></div>
+      <div><div class="n">1973</div><p>Тұлға адам өмірін сақтаған шешім арқылы да бағаланады: Медеу бөгеті.</p></div>
+      <div><div class="n">AR</div><p>Ғимараттардың модельдері телефон арқылы кез келген жерде қаралады: сабақта, экскурсияда.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="life">
+  <div class="wrap"><p class="kick">Тұлға</p><h2>Өмір жолы</h2><p class="lede">Сары белгілер — Алматы үшін маңызды болған кезеңдер. Карточкаларды жанына айналдырыңыз.</p></div>
+  <div class="hscroll" id="timeline"></div>
+</section>
+
+<section id="dam">
+  <div class="wrap">
+    <p class="kick">Басты дәлел</p>
+    <h2>Қаланы құтқарған бөгет</h2>
+    <p class="lede">Алматы тау етегінде орналасқан. 1921 жылғы сел қалаға үлкен шығын әкелген. Қонаев дәуірінде бұл қауіпке қарсы батыл инженерлік шешім қабылданды.</p>
+    <div class="damgrid">
+      <div><span class="d">1966</span><h3>Бірінші жарылыс</h3><p>Медеу шатқалында бағытталған жарылыс жасалып, тау жынысы бөгет түрінде үйілді.</p></div>
+      <div><span class="d">1967</span><h3>Екінші жарылыс</h3><p>Бөгет биіктетіліп, шатқалды кесіп өтетін қорғаныс пайда болды.</p></div>
+      <div><span class="d">1973</span><h3>Сынақ</h3><p>Шілдеде қуатты сел шатқалмен төмен түсті. Бөгет оны тоқтатып, қала аман қалды.</p></div>
+    </div>
+    <p class="bigq">Бұл нысанның бағасы әдемілікпен емес, сақталған адам өмірімен өлшенеді.</p>
+    <button class="pb" id="selBtn2">1973 жылғы селді нақты шатқалда көру</button>
+  </div>
+</section>
+
+<section id="era">
+  <div class="wrap">
+    <p class="kick">Объективті талдау</p>
+    <h2>Дәуірдің екі жағы</h2>
+    <div class="sides">
+      <div class="p"><h3>Жетістіктер</h3><ul>
+        <li>Алматы ірі мәдени және спорттық орталыққа айналды: Медеу, Республика сарайы, цирк, «Қазақстан» қонақүйі салынды.</li>
+        <li>Медеу бөгеті қаланы сел қаупінен қорғады.</li>
+        <li>Қала халқы өсіп, 1980 жылдары миллионнан асты.</li>
+        <li>Қонаев ерте жылдары Ғылым академиясын басқарып, ғылымның дамуына көңіл бөлді.</li>
+      </ul></div>
+      <div class="m"><h3>Шектеулер мен қайшылықтар</h3><ul>
+        <li>Республика Кеңес Одағының құрамында болды, негізгі шешімдер Мәскеуде бекітілді.</li>
+        <li>1970–1980 жылдардағы экономикалық тоқырау бүкіл елге әсер етті.</li>
+        <li>1986 жылы желтоқсанда Қонаевтың орнынан алынуы Желтоқсан оқиғасына түрткі болды.</li>
+        <li class="ph">[Дария өз зерттеуі бойынша толықтырады]</li>
+      </ul></div>
+    </div>
+    <div class="verdict"><h3>Менің бағам</h3><p class="ph">[Бұл бөлікті Дария өзі жазады: зерттеуден кейін Қонаевтың Алматыдағы мұрасын қалай бағалайды, неге? 4–6 сөйлем.]</p></div>
+  </div>
+</section>
+
+<section id="people">
+  <div class="wrap">
+    <p class="kick">Өз зерттеуім</p>
+    <h2>Жастар не біледі?</h2>
+    <p class="lede">Сауалнама Өркен мектебінің оқушылары мен ата-аналары арасында жүргізілді. Сауалнама жасырын, жеке деректер жиналмайды.</p>
+    <div class="sgrid" id="survey"></div>
+    <div class="quiz">
+      <h3>Ғимарат қай жылы салынған? Өзіңізді тексеріңіз</h3>
+      <p class="qq" id="qText"></p>
+      <div class="opts" id="qOpts"></div>
+      <div class="qf"><span id="qRes" aria-live="polite"></span><button class="pb" id="qNext" hidden>Келесі</button></div>
+    </div>
+  </div>
+</section>
+
+<section id="voices">
+  <div class="wrap">
+    <p class="kick">Ауызша тарих</p>
+    <h2>Куәгерлер есіне алады</h2>
+    <p class="lede">Сұхбаттар қатысушылардың келісімімен жазылды. Әр видео бір минуттан аспайды.</p>
+    <div class="vgrid" id="voicesGrid"></div>
+  </div>
+</section>
+
+<section id="sources">
+  <div class="wrap">
+    <p class="kick">Дереккөздер</p>
+    <h2>Неге сүйендім</h2>
+    <ol class="src">
+      <li>Қонаев Д.А. О моём времени. — Алматы, 1992.</li>
+      <li>Д.А. Қонаевтың мемориалдық мұражайы, Алматы. Далалық зерттеу: [бару күні, жазбалар].</li>
+      <li class="ph">[Мұрағат құжаттары немесе ескі газет материалдары: атауы, жылы, сақталатын жері]</li>
+      <li class="ph">[Ескі фотосуреттер көзі: мұрағат / мұражай / кітап атауы]</li>
+      <li class="ph">[Ғылыми мақала немесе энциклопедия: авторы, атауы, жылы, бет]</li>
+      <li>Автордың өз сауалнамасы, сұхбаттары және фото-бейнетүсірілімдері, 2026 ж. қазан.</li>
+    </ol>
+    <p class="ainote">Жасанды интеллектіні қолдану туралы: сайттың дизайны, 3D сахна және бағдарламалық коды ЖИ құралының көмегімен жасалды. Ғимараттардың 3D модельдері — жеңілдетілген көркем бейнелер, нақты сызбалар емес. Зерттеу мазмұны, фото, видео, сауалнама, сұхбат және қорытынды — автордың өз жұмысы. Сұрау мысалдары (промпттар) сақталған.</p>
+  </div>
+</section>
+</main>
+<footer><div class="wrap">«Менің шағын Отаным» жас тарихшылар конкурсы, 2026. «Тұлға және дәуір: цифрлық тарихи портрет» номинациясы.</div></footer>
+<button class="themeb" id="themeBtn" aria-label="Жарық немесе күңгірт режим">◐</button>
+<script src="https://cdn.jsdelivr.net/npm/cesium@1.145.0/Build/Cesium/Cesium.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/exporters/GLTFExporter.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
+<script>
+const ION_TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6Imc1c0xhUW02Zkt3RUNGVzEiLCJqdGkiOiIzNTA2YzU3OC1kNWQxLTRkODAtYTdhMy1lMTg4ODc1MTE3MjMiLCJpZCI6NTE2MjA2LCJzdWIiOiJkYXVyZW5vdmFiIiwiaXNzIjoiaHR0cHM6Ly9hcGkuY2VzaXVtLmNvbSIsImF1ZCI6ImtvbmFldi1hbG1hdHkiLCJpYXQiOjE3OTEyODEyNjV9.h65tEDW0CVQt_Av2w7nz_GsOY7RDWm8OYhG9m6hdFco";
+/* =====================================================================
+   ДЕРЕКТЕР — фото/видео қосу үшін тек осы бөлікті өзгертіңіз.
+   then / now / video: файл жолы, мысалы "media/hotel-then.jpg". model: дайын GLB модель (міндетті емес).
+   ===================================================================== */
+const PLACES = [
+ {id:"hotel", lh:110, range:520, name:"«Қазақстан» қонақүйі", year:1977, lat:43.2446, lng:76.9570,
+  about:"Ұзақ жылдар бойы Алматының ең биік ғимараты болған. Төбесіндегі алтын «тәж» қаланың символына айналды.",
+  why:"[Неге салынды, кімнің бастамасымен — дереккөзге сүйеніп Дария толықтырады]", then:"", now:"", video:""},
+ {id:"palace", lh:35, range:480, name:"Республика сарайы", year:1970, lat:43.2405, lng:76.9566,
+  about:"Қаланың басты концерт залдарының бірі. Алғашында В.И. Ленин атындағы сарай деп аталған.",
+  why:"[Толықтыру керек]", then:"", now:"", video:""},
+ {id:"arasan", lh:30, range:420, name:"Арасан моншасы", year:1982, lat:43.2600, lng:76.9505,
+  about:"Қала орталығындағы ірі монша кешені. Күмбездері мен ішкі безендіруі ерекше.",
+  why:"[Толықтыру керек]", then:"", now:"", video:""},
+ {id:"circus", lh:40, range:440, name:"Алматы циркі", year:1972, lat:43.2395, lng:76.9230,
+  about:"Күмбезді, «шаңырақ» тәрізді ғимарат. Бүгінге дейін өз қызметін атқарып келеді.",
+  why:"[Толықтыру керек]", then:"", now:"", video:""},
+ {id:"museum", lh:40, range:480, name:"Орталық мемлекеттік мұражай", year:1985, lat:43.2350, lng:76.9530,
+  about:"Қазақстанның ең ірі мұражайларының бірі. Көкшіл күмбездері алыстан көрінеді.",
+  why:"[Толықтыру керек]", then:"", now:"", video:""},
+ {id:"koktobe", lh:390, range:1300, name:"Көктөбе телемұнарасы", year:1983, lat:43.2297, lng:76.9760,
+  about:"Көктөбе тауындағы телемұнара. Қаланың кез келген жерінен көрінетін белгі.",
+  why:"[Толықтыру керек]", then:"", now:"", video:""},
+ {id:"medeu", lh:35, range:900, name:"Медеу мұз айдыны", year:1972, lat:43.1576, lng:77.0586,
+  about:"Теңіз деңгейінен 1600 метрден астам биіктіктегі мұз айдыны. Мұнда көптеген әлемдік рекордтар орнатылған.",
+  why:"[Толықтыру керек]", then:"", now:"", video:""},
+ {id:"dam", lh:60, range:1000, name:"Медеу сел бөгеті", year:1967, lat:43.1505, lng:77.0605,
+  about:"1966–1967 жылдары бағытталған жарылыс арқылы жасалған. 1973 жылы қаланы селден қорғады.",
+  why:"Толығырақ «Қаланы құтқарған бөгет» бөлімінде.", then:"", now:"", video:""}
+];
+const LIFE = [
+ {y:"1912",t:"Верный (қазіргі Алматы) қаласында дүниеге келді.",key:1},
+ {y:"1936",t:"Мәскеудегі түсті металдар және алтын институтын бітірді."},
+ {y:"1936–42",t:"Балқаш пен Риддердегі өнеркәсіп орындарында инженер, кейін басшы."},
+ {y:"1942",t:"Қазақ КСР Халық Комиссарлары Кеңесі төрағасының орынбасары."},
+ {y:"1952–55",t:"Қазақ КСР Ғылым академиясының президенті.",key:1},
+ {y:"1955–60",t:"Қазақ КСР Министрлер Кеңесінің төрағасы."},
+ {y:"1960–62",t:"Қазақстан Компартиясы ОК бірінші хатшысы."},
+ {y:"1964–86",t:"Қайтадан бірінші хатшы. Алматыдағы ірі құрылыстардың негізгі кезеңі.",key:1},
+ {y:"1966–67",t:"Медеу шатқалында сел бөгеті жасалды.",key:1},
+ {y:"1986",t:"Желтоқсанда қызметінен босатылды, бұл Желтоқсан оқиғасына түрткі болды."},
+ {y:"1993",t:"Алматыда қайтыс болды."}
+];
+/* Сауалнама: answers:[{label:"Иә",pct:34},{label:"Жоқ",pct:66}] */
+const SURVEY = [
+ {q:"«Қазақстан» қонақүйінің қай дәуірде салынғанын білесіз бе?", answers:null},
+ {q:"Медеу бөгеті Алматыны селден қорғағанын білесіз бе?", answers:null},
+ {q:"Қонаевтың есімімен қандай нысанды байланыстырасыз?", answers:null}
+];
+const VOICES = [
+ {quote:"[Сұхбаттан қысқа үзінді: сол кездегі Алматы, жаңа ғимараттар ашылған кез, Медеу туралы естелік]", who:"[Респондент 1, жасы, Алматыда тұрған жылдары]", video:""},
+ {quote:"[Екінші сұхбаттан үзінді]", who:"[Респондент 2, жасы]", video:""}
+];
+
+
+const $=s=>document.querySelector(s);
+/* theme */
+(()=>{const r=document.documentElement;try{const s=localStorage.getItem("theme");if(s)r.dataset.theme=s}catch(e){}
+ $("#themeBtn").onclick=()=>{const d=r.dataset.theme?r.dataset.theme==="dark":matchMedia("(prefers-color-scheme: dark)").matches;
+ r.dataset.theme=d?"light":"dark";try{localStorage.setItem("theme",r.dataset.theme)}catch(e){}}})();
+
+/* ---------- content rendering ---------- */
+$("#timeline").innerHTML=LIFE.map(e=>`<div class="tc ${e.key?'key':''}"><div class="y">${e.y}</div><p>${e.t}</p></div>`).join("");
+$("#survey").innerHTML=SURVEY.map(s=>`<div class="sq"><h3>${s.q}</h3>${s.answers?s.answers.map(a=>`<div class="brow"><span>${a.label}</span><div class="track"><div class="fill" data-w="${a.pct}"></div></div><span>${a.pct}%</span></div>`).join(""):`<div class="empty">Нәтиже әлі енгізілмеген. Сауалнамадан кейін осында диаграмма шығады.</div>`}</div>`).join("");
+new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll(".fill").forEach(f=>f.style.width=f.dataset.w+"%");o.unobserve(e.target)}})).observe($("#survey"));
+const vslot=(src,label)=>src?`<div class="vslot"><video src="${src}" controls playsinline preload="metadata"></video></div>`:`<div class="vslot">${label}</div>`;
+$("#voicesGrid").innerHTML=VOICES.map(v=>`<div class="voice">${vslot(v.video,"Видео-сұхбат осында болады<br><small>MP4, 1 минутқа дейін</small>")}<blockquote><span class="ph">${v.quote}</span><cite>${v.who}</cite></blockquote></div>`).join("");
+
+/* quiz */
+(()=>{const qs=PLACES.filter(p=>p.id!=="dam").sort(()=>Math.random()-.5);let i=0,sc=0;
+ const T=$("#qText"),O=$("#qOpts"),R=$("#qRes"),N=$("#qNext");
+ const opts=y=>{const s=new Set([y]),pool=[1958,1962,1966,1970,1972,1975,1977,1980,1982,1983,1985,1988,1991];
+   while(s.size<4){const c=pool[Math.floor(Math.random()*pool.length)];if(Math.abs(c-y)>=2)s.add(c)}return[...s].sort((a,b)=>a-b)};
+ function show(){const p=qs[i];T.innerHTML=`${i+1}/${qs.length} · <b>${p.name}</b> қай жылы салынған?`;R.textContent="";N.hidden=true;
+   O.innerHTML=opts(p.year).map(y=>`<button data-y="${y}">${y}</button>`).join("");
+   O.querySelectorAll("button").forEach(b=>b.onclick=()=>{const ok=+b.dataset.y===p.year;if(ok)sc++;
+     O.querySelectorAll("button").forEach(x=>{x.disabled=true;if(+x.dataset.y===p.year)x.classList.add("ok")});if(!ok)b.classList.add("no");
+     R.textContent=ok?"Дұрыс!":`Дұрыс жауап: ${p.year}`;N.hidden=false;N.textContent=i<qs.length-1?"Келесі":"Нәтижені көру"})}
+ N.onclick=()=>{i++;if(i<qs.length)return show();
+   T.innerHTML=`Нәтижеңіз: <b>${sc} / ${qs.length}</b>`;O.innerHTML="";R.textContent=sc>=qs.length-1?"Алматының тарихын жақсы білесіз.":"3D картаға оралып, нысандармен танысып шығыңыз.";
+   N.textContent="Қайта бастау";N.onclick=()=>{i=0;sc=0;qs.sort(()=>Math.random()-.5);N.onclick=null;location.hash="";show();bindNext()}};
+ function bindNext(){N.onclick=()=>{i++;if(i<qs.length)return show();T.innerHTML=`Нәтижеңіз: <b>${sc} / ${qs.length}</b>`;O.innerHTML="";N.textContent="Қайта бастау";N.onclick=()=>{i=0;sc=0;show();bindNext()}}}
+ bindNext();show()})();
+
+
+
+/* ===================================================================== AR модельдер (three.js) */
+let curURL=null;
+function closeModel(){$("#modal").classList.remove("open")}
+$("#mClose").onclick=closeModel;$("#modal").onclick=e=>{if(e.target.id==="modal")closeModel()};
+function openModel(p){$("#mTitle").textContent=p.name;const host=$("#mHost");
+  $("#modal").classList.add("open");
+  if(p.model){host.innerHTML=mv(p.model,p.name);return}
+  if(!window.THREE||!THREE.GLTFExporter||!customElements.get("model-viewer")){host.innerHTML='<div style="margin:auto;padding:20px;text-align:center;color:#9EABBD">3D қарау құралы жүктелмеді. Бетті жаңартып көріңіз.</div>';return}
+  host.innerHTML='<div style="margin:auto;color:#9EABBD;font-family:Oswald,Arial">Модель дайындалуда…</div>';
+const M={
+  white:new THREE.MeshStandardMaterial({color:0xf2f0ea,roughness:.6}),
+  conc:new THREE.MeshStandardMaterial({color:0xc9c7c0,roughness:.8}),
+  glass:new THREE.MeshStandardMaterial({color:0x2d4f73,roughness:.2,metalness:.6,emissive:0x000000}),
+  gold:new THREE.MeshStandardMaterial({color:0xe2a93b,roughness:.3,metalness:.8,emissive:0x3a2400}),
+  teal:new THREE.MeshStandardMaterial({color:0x2bb3ad,roughness:.4,metalness:.2}),
+  blue:new THREE.MeshStandardMaterial({color:0x3e7ec7,roughness:.35,metalness:.3}),
+  red:new THREE.MeshStandardMaterial({color:0xd9473a,roughness:.5}),
+  ice:new THREE.MeshStandardMaterial({color:0xdff3ff,roughness:.05,metalness:.1,emissive:0x0a2030}),
+  rock:new THREE.MeshStandardMaterial({color:0x7d6a55,roughness:1,flatShading:true})
+};
+const box=(w,h,d,m,x=0,y=0,z=0)=>{const o=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),m);o.position.set(x,y+h/2,z);o.castShadow=o.receiveShadow=true;return o};
+const BUILD={
+ hotel(){const g=new THREE.Group();g.add(box(3,13,2.1,M.white));
+   for(let i=0;i<12;i++)g.add(box(3.05,.32,2.15,M.glass,0,1+i*1,0));
+   const crown=new THREE.Mesh(new THREE.CylinderGeometry(1.7,1.1,1.6,12,1,true),M.gold);crown.position.y=13.8;g.add(crown);
+   const sp=new THREE.Mesh(new THREE.ConeGeometry(.25,2.2,8),M.gold);sp.position.y=15.6;g.add(sp);return g},
+ palace(){const g=new THREE.Group();g.add(box(10,.6,6.5,M.conc));g.add(box(9,2.6,5.6,M.glass,0,.6));g.add(box(10.4,.6,7,M.white,0,3.2));
+   for(let i=0;i<11;i++){const c=new THREE.Mesh(new THREE.CylinderGeometry(.14,.14,2.6,6),M.white);c.position.set(-4.6+i*.92,1.9,3.2);c.castShadow=true;g.add(c)}return g},
+ arasan(){const g=new THREE.Group();g.add(box(7,2,5,M.white));g.add(box(7.05,.5,5.05,M.teal,0,.9));
+   [-1.9,1.9].forEach(x=>{const d=new THREE.Mesh(new THREE.SphereGeometry(1.5,20,12,0,Math.PI*2,0,Math.PI/2),M.teal);d.position.set(x,2,0);d.castShadow=true;g.add(d)});
+   const d=new THREE.Mesh(new THREE.SphereGeometry(1,16,10,0,Math.PI*2,0,Math.PI/2),M.gold);d.position.set(0,2,0);g.add(d);return g},
+ circus(){const g=new THREE.Group();const b=new THREE.Mesh(new THREE.CylinderGeometry(3.6,3.8,2,24),M.white);b.position.y=1;b.castShadow=true;g.add(b);
+   const d=new THREE.Mesh(new THREE.SphereGeometry(3.6,28,14,0,Math.PI*2,0,Math.PI/2),M.blue);d.scale.y=.55;d.position.y=2;d.castShadow=true;g.add(d);
+   const r=new THREE.Mesh(new THREE.TorusGeometry(3.65,.16,8,40),M.gold);r.rotation.x=Math.PI/2;r.position.y=2;g.add(r);
+   const s=new THREE.Mesh(new THREE.ConeGeometry(.3,1.8,8),M.gold);s.position.y=4.8;g.add(s);return g},
+ museum(){const g=new THREE.Group();g.add(box(8,2.4,6,M.white));g.add(box(6,1,4.2,M.white,0,2.4));
+   const d=new THREE.Mesh(new THREE.SphereGeometry(1.8,20,12,0,Math.PI*2,0,Math.PI/2),M.blue);d.position.y=3.4;d.castShadow=true;g.add(d);
+   [[-3,-2],[3,-2],[-3,2],[3,2]].forEach(p=>{const s=new THREE.Mesh(new THREE.SphereGeometry(.7,14,8,0,Math.PI*2,0,Math.PI/2),M.blue);s.position.set(p[0],2.4,p[1]);g.add(s)});return g},
+ koktobe(){const g=new THREE.Group();const H=22;
+   const t=new THREE.Mesh(new THREE.CylinderGeometry(.22,2.2,H,4,10,true),new THREE.MeshBasicMaterial({color:0xd9473a,wireframe:true}));t.position.y=H/2;g.add(t);
+   const t2=new THREE.Mesh(new THREE.CylinderGeometry(.18,2.0,H*.98,4,1,true),new THREE.MeshStandardMaterial({color:0xffffff,transparent:true,opacity:.15,side:THREE.DoubleSide}));t2.position.y=H/2;g.add(t2);
+   [8,14].forEach(y=>{const p=new THREE.Mesh(new THREE.CylinderGeometry(1.1,1.1,.35,12),M.white);p.position.y=y;g.add(p)});
+   const a=new THREE.Mesh(new THREE.CylinderGeometry(.06,.1,5,6),M.white);a.position.y=H+2.5;g.add(a);
+   const beacon=new THREE.Mesh(new THREE.SphereGeometry(.3,10,8),new THREE.MeshBasicMaterial({color:0xff3b2f}));beacon.position.y=H+5;beacon.name="beacon";g.add(beacon);return g},
+ medeu(){const g=new THREE.Group();const ice=new THREE.Mesh(new THREE.CylinderGeometry(4.6,4.6,.25,40),M.ice);ice.scale.z=.62;ice.position.y=.13;g.add(ice);
+   const st=new THREE.Mesh(new THREE.CylinderGeometry(6.4,5,1.6,40,1,true),M.conc);st.scale.z=.66;st.position.y=.8;st.material=st.material.clone();st.material.side=THREE.DoubleSide;g.add(st);
+   const lane=new THREE.Mesh(new THREE.TorusGeometry(3.6,.07,6,50),M.red);lane.rotation.x=Math.PI/2;lane.scale.y=.62;lane.position.y=.27;g.add(lane);return g},
+ dam(){const g=new THREE.Group();const shape=new THREE.Shape();shape.moveTo(-6,0);shape.lineTo(6,0);shape.lineTo(2.6,6);shape.lineTo(-2.6,6);shape.lineTo(-6,0);
+   const geo=new THREE.ExtrudeGeometry(shape,{depth:16,bevelEnabled:false});geo.translate(0,0,-8);const m=new THREE.Mesh(geo,M.rock);m.castShadow=m.receiveShadow=true;g.add(m);return g}
+};
+
+  const g=BUILD[p.id]();const b=new THREE.Box3().setFromObject(g),size=b.getSize(new THREE.Vector3()),k=1.2/Math.max(size.x,size.y,size.z);
+  const wrap=new THREE.Group();g.scale.setScalar(k);g.position.y=-b.min.y*k;wrap.add(g);
+  new THREE.GLTFExporter().parse(wrap,res=>{if(curURL)URL.revokeObjectURL(curURL);curURL=URL.createObjectURL(new Blob([res],{type:"model/gltf-binary"}));host.innerHTML=mv(curURL,p.name)},{binary:true})}
+const mv=(src,name)=>`<model-viewer src="${src}" alt="${name} 3D моделі" camera-controls auto-rotate shadow-intensity="1" exposure="1.1" ar ar-modes="webxr scene-viewer quick-look" ar-scale="auto" camera-orbit="35deg 70deg auto"><button slot="ar-button" class="arbtn">📱 Бөлмеде көру (AR)</button></model-viewer>`;
+
+
+/* ===================================================================== CESIUM */
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const C=window.Cesium;
+const errBox=(m)=>{$("#err").innerHTML=m;$("#err").classList.add("show");$("#loading").remove()};
+if(!C){errBox("3D жүктелмеді. Интернет байланысын тексеріп, бетті жаңартыңыз.")}
+else (async function(){
+C.Ion.defaultAccessToken=ION_TOKEN;
+const viewer=new C.Viewer("cesium",{
+  baseLayerPicker:false,geocoder:false,homeButton:false,sceneModePicker:false,navigationHelpButton:false,
+  animation:false,timeline:false,fullscreenButton:false,infoBox:false,selectionIndicator:false,
+  globe:false,skyAtmosphere:new C.SkyAtmosphere(),requestRenderMode:false
+});
+const scene=viewer.scene, cam=viewer.camera;
+scene.skyAtmosphere.show=true;
+scene.screenSpaceCameraController.enableCollisionDetection=true;
+
+let tileset;
+try{
+  tileset=await C.createGooglePhotorealistic3DTileset({onlyUsingWithGoogleGeocoder:true},{maximumScreenSpaceError:12});
+  scene.primitives.add(tileset);
+}catch(e){console.error(e);errBox("Нақты 3D қала жүктелмеді.<br><small>Cesium кілтін (token) немесе интернетті тексеріңіз.</small>");return}
+
+const H=(lat,lng,h)=>C.Cartesian3.fromDegrees(lng,lat,h);
+/* жер биіктігі: алдымен шамамен, кейін нақты өлшеу */
+const FALLBACK={hotel:830,palace:830,arasan:760,circus:800,museum:860,koktobe:1050,medeu:1650,dam:1720};
+PLACES.forEach(p=>p.gh=FALLBACK[p.id]||800);
+async function sampleGround(){
+  if(!scene.sampleHeightSupported)return;
+  try{const carts=PLACES.map(p=>C.Cartographic.fromDegrees(p.lng,p.lat));
+    const res=await scene.sampleHeightMostDetailed(carts);
+    res.forEach((c,i)=>{if(c&&isFinite(c.height))PLACES[i].gh=c.height});
+    rings.forEach(r=>r.update&&r.update())}catch(e){console.warn(e)}}
+
+/* алтын жарқыл: нысан аумағы */
+const rings=[];
+let year=2026;
+PLACES.forEach(p=>{
+  const ent=viewer.entities.add({position:H(p.lat,p.lng,0),
+    ellipse:{semiMajorAxis:p.id==="koktobe"?70:p.id==="medeu"||p.id==="dam"?140:85,semiMinorAxis:p.id==="koktobe"?70:p.id==="medeu"||p.id==="dam"?140:85,
+      classificationType:C.ClassificationType.CESIUM_3D_TILE,
+      material:new C.ColorMaterialProperty(new C.CallbackProperty(t=>{const a=.22+.18*Math.sin(Date.now()/450);
+        return year>=p.year?C.Color.fromCssColorString("#F2B744").withAlpha(a):C.Color.fromCssColorString("#EE6D5B").withAlpha(.18)},false))}});
+  rings.push(ent)});
+
+/* HTML белгілер */
+const labels={};
+PLACES.forEach(p=>{const el=document.createElement("button");el.className="lab";el.innerHTML=`<b>${p.year}</b>${p.name}`;el.onclick=()=>openPlace(p.id);$("#labels").appendChild(el);labels[p.id]=el});
+const tmp=new C.Cartesian3();
+scene.postRender.addEventListener(()=>{
+  const W=scene.canvas.clientWidth,Hh=scene.canvas.clientHeight,shown=[];
+  PLACES.map(p=>{const pos=H(p.lat,p.lng,p.gh+p.lh);const w=C.SceneTransforms.worldToWindowCoordinates(scene,pos);
+      const d=C.Cartesian3.distance(pos,cam.positionWC);return{p,w,d}})
+    .sort((a,b)=>(labels[b.p.id].classList.contains("on")-labels[a.p.id].classList.contains("on"))||a.d-b.d)
+    .forEach(o=>{const el=labels[o.p.id];let off=!o.w||o.w.x<-50||o.w.y<-20||o.w.x>W+50||o.w.y>Hh+20||o.d>30000;
+      if(!off){const pc=C.Cartesian3.subtract(H(o.p.lat,o.p.lng,o.p.gh),cam.positionWC,tmp);if(C.Cartesian3.dot(pc,cam.directionWC)<0)off=true}
+      if(!off&&shown.some(s=>Math.abs(s.x-o.w.x)<150&&Math.abs(s.y-o.w.y)<30))off=true;
+      el.classList.toggle("hide",off);el.classList.toggle("future",year<o.p.year);
+      if(!off){shown.push(o.w);el.style.left=o.w.x+"px";el.style.top=o.w.y+"px"}})});
+
+/* камера */
+const HOME={lat:43.318,lng:76.935,h:3000,heading:168,pitch:-17};
+function goHome(dur=3){stopOrbit();cam.flyTo({destination:H(HOME.lat,HOME.lng,HOME.h),orientation:{heading:C.Math.toRadians(HOME.heading),pitch:C.Math.toRadians(HOME.pitch),roll:0},duration:reduce?0:dur})}
+let orbit=null;
+function stopOrbit(){if(orbit){scene.preRender.removeEventListener(orbit);orbit=null;cam.lookAtTransform(C.Matrix4.IDENTITY)}}
+function flyPlace(p,opt={}){stopOrbit();
+  const center=H(p.lat,p.lng,p.gh+p.lh*.4),bs=new C.BoundingSphere(center,10);
+  const heading=C.Math.toRadians(opt.heading??200),pitch=C.Math.toRadians(opt.pitch??-22),range=opt.range??p.range;
+  cam.flyToBoundingSphere(bs,{offset:new C.HeadingPitchRange(heading,pitch,range),duration:reduce?0:(opt.dur??2.6),
+    complete:()=>{if(opt.orbit===false||reduce)return;let hd=heading;
+      orbit=()=>{hd+=0.0016;cam.lookAt(center,new C.HeadingPitchRange(hd,pitch,range))};scene.preRender.addEventListener(orbit)}})}
+viewer.screenSpaceEventHandler.setInputAction(()=>{stopOrbit();stopTour()},C.ScreenSpaceEventType.LEFT_DOWN);
+
+/* caption */
+let capTimer;function caption(k,h,p,ms){clearTimeout(capTimer);$("#capK").textContent=k;$("#capH").textContent=h;$("#capP").textContent=p;$("#caption").classList.add("show");if(ms)capTimer=setTimeout(()=>$("#caption").classList.remove("show"),ms)}
+const hideCap=()=>$("#caption").classList.remove("show");
+
+/* уақыт */
+const yr=$("#year");const setYear=y=>{year=y;yr.value=y;$("#yearBig").firstChild.nodeValue=y};
+yr.oninput=()=>setYear(+yr.value);
+
+/* drawer */
+const layer=(src,cls,lb)=>`<div class="ly ${cls}">${src?`<img src="${src}" alt="${lb}">`:`<span>${lb}<br><small>фото осында болады</small></span>`}</div>`;
+function openPlace(id,fromTour){const p=PLACES.find(x=>x.id===id);if(!fromTour)stopTour();
+  Object.entries(labels).forEach(([k,el])=>el.classList.toggle("on",k===id));
+  if(year<p.year)setYear(2026);
+  flyPlace(p);
+  if(fromTour)return;
+  $("#dBody").innerHTML=`<div class="yr">${p.year}</div><h3>${p.name}</h3><p>${p.about}</p><p class="why">${p.why}</p>
+   <h4>Сол кезде және қазір</h4>
+   <div class="cmp" id="cmp">${layer(p.then,"then","Мұрағат фотосы")}${layer(p.now,"now","Өз фотом, 2026")}<div class="bar"></div>
+   <span class="tg l">${p.year}</span><span class="tg r">2026</span><input type="range" min="0" max="100" value="50" aria-label="Фотоларды салыстыру"></div>
+   <p class="hint">Сызықты солға немесе оңға жылжытыңыз.</p>
+   <h4>Видео</h4>${vslot(p.video,"Дарияның видеосы осында болады<br><small>MP4, 1 минутқа дейін</small>")}
+   <div class="btnrow"><button class="pb" id="arBtn">3D модель және AR</button><button class="pb ghost" id="nextBtn">Келесі нысан</button></div>`;
+  const cmp=$("#cmp"),r=cmp.querySelector("input"),nw=cmp.querySelector(".now"),bar=cmp.querySelector(".bar");
+  r.oninput=()=>{nw.style.clipPath=`inset(0 0 0 ${r.value}%)`;bar.style.left=r.value+"%"};
+  $("#arBtn").onclick=()=>openModel(p);
+  $("#nextBtn").onclick=()=>{const i=PLACES.findIndex(x=>x.id===id);openPlace(PLACES[(i+1)%PLACES.length].id)};
+  $("#drawer").classList.add("open");$("#drawer").setAttribute("aria-hidden","false")}
+window.__openPlace=openPlace;
+function closeDrawer(){$("#drawer").classList.remove("open");$("#drawer").setAttribute("aria-hidden","true");Object.values(labels).forEach(l=>l.classList.remove("on"))}
+$("#dClose").onclick=closeDrawer;
+addEventListener("keydown",e=>{if(e.key==="Escape"){closeDrawer();closeModel()}});
+
+/* 3D ТУР */
+const TOUR=[
+ {k:"Кіріспе",h:"Алматы, 1960",p:"Тау етегіндегі қала. Келесі жиырма жылда оның келбеті түбегейлі өзгереді.",year:1960,home:true},
+ {id:"dam",k:"1966–1967",h:"Медеу сел бөгеті",p:"Шатқалда бағытталған жарылыс жасалып, қаланы селден қорғайтын бөгет пайда болды.",year:1967,heading:330,pitch:-28},
+ {id:"palace",k:"1970",h:"Республика сарайы",p:"Қаланың басты концерт залдарының бірі.",year:1970},
+ {id:"medeu",k:"1972",h:"Медеу мұз айдыны",p:"Тау ішіндегі биік мұз айдыны. Мұнда көптеген әлемдік рекордтар орнатылды.",year:1972,heading:160},
+ {id:"circus",k:"1972",h:"Алматы циркі",p:"Шаңырақ тәрізді күмбезді ғимарат.",year:1972},
+ {id:"hotel",k:"1977",h:"«Қазақстан» қонақүйі",p:"Ұзақ жылдар бойы қаланың ең биік ғимараты, Алматының символы.",year:1977},
+ {id:"arasan",k:"1982",h:"Арасан",p:"Қала орталығындағы күмбезді монша кешені.",year:1982},
+ {id:"koktobe",k:"1983",h:"Көктөбе телемұнарасы",p:"Қаланың кез келген жерінен көрінетін белгі.",year:1983,pitch:-12},
+ {id:"museum",k:"1985",h:"Орталық мемлекеттік мұражай",p:"Қазақстанның ең ірі мұражайларының бірі.",year:1985},
+ {k:"Қорытынды",h:"Бір дәуір — бүтін қала",p:"Бүгін біз күнде көретін нысандардың көбі осы жиырма жылда пайда болды.",year:2026,home:true}
+];
+let tourI=-1,tourT=null;
+function tourStep(){tourI++;if(tourI>=TOUR.length){stopTour();return}
+  const s=TOUR[tourI];closeDrawer();setYear(s.year);
+  if(s.home){goHome(4);Object.values(labels).forEach(l=>l.classList.remove("on"))}
+  else{const p=PLACES.find(x=>x.id===s.id);Object.entries(labels).forEach(([k,el])=>el.classList.toggle("on",k===s.id));flyPlace(p,{heading:s.heading,pitch:s.pitch,dur:4})}
+  caption(s.k,s.h,s.p);tourT=setTimeout(tourStep,s.home?7000:9000)}
+function stopTour(){clearTimeout(tourT);if(tourI>=0){tourI=-1;hideCap();$("#tourBtn").textContent="▶ 3D тур"}}
+$("#tourBtn").onclick=()=>{if(tourI>=0){stopTour();stopOrbit();return}$("#tourBtn").textContent="■ Турды тоқтату";tourI=-1;tourStep()};
+$("#homeBtn").onclick=()=>{stopTour();closeDrawer();goHome(2.5)};
+
+/* 1973 СЕЛ — нақты шатқалда */
+const damP=PLACES.find(p=>p.id==="dam");
+const SRC={lat:43.1290,lng:77.0800}; // жоғарғы ағыс (Шымбұлақ жағы)
+const NPTS=48;let path=[];
+function buildPathFallback(){path=[];for(let i=0;i<=NPTS;i++){const t=i/NPTS;path.push({lat:SRC.lat+(damP.lat-SRC.lat)*t,lng:SRC.lng+(damP.lng-SRC.lng)*t,h:2250+(damP.gh+15-2250)*t})}}
+buildPathFallback();
+async function samplePath(){if(!scene.sampleHeightSupported)return;try{
+  const carts=path.map(q=>C.Cartographic.fromDegrees(q.lng,q.lat));const res=await scene.sampleHeightMostDetailed(carts);
+  res.forEach((c,i)=>{if(c&&isFinite(c.height))path[i].h=c.height})}catch(e){}}
+const pts=scene.primitives.add(new C.PointPrimitiveCollection());
+const NP=1600,part=[];const mud=[C.Color.fromCssColorString("#7a4a22"),C.Color.fromCssColorString("#9a6534"),C.Color.fromCssColorString("#5e3a1c")];
+for(let i=0;i<NP;i++){part.push({t:-Math.random()*.5,sp:.06+Math.random()*.03,o:(Math.random()-.5)*2,stop:.9+Math.random()*.1,
+  p:pts.add({position:C.Cartesian3.ZERO,pixelSize:5+Math.random()*4,color:mud[i%3],show:false})})}
+let selOn=false,selStart=0,lastT=performance.now();
+function at(t){const f=Math.max(0,Math.min(1,t))*NPTS,i=Math.min(NPTS-1,Math.floor(f)),k=f-i,a=path[i],b=path[i+1];
+  return{lat:a.lat+(b.lat-a.lat)*k,lng:a.lng+(b.lng-a.lng)*k,h:a.h+(b.h-a.h)*k}}
+const dLat=-(damP.lng-SRC.lng),dLng=(damP.lat-SRC.lat);const nl=Math.hypot(dLat,dLng);
+async function runSel(){stopTour();closeDrawer();if(year<1967)setYear(2026);
+  $("#stage").scrollIntoView({behavior:reduce?"auto":"smooth"});
+  caption("15 шілде 1973","Сел Медеу шатқалымен төмен түсті","Тау жақтан миллиондаған текше метр лай мен тас құлады. Бөгет оны тоқтатып, қаланы аман сақтап қалды.");
+  flyPlace(damP,{heading:150,pitch:-30,range:2600,orbit:false,dur:3});
+  await samplePath();
+  part.forEach(q=>{q.t=-Math.random()*.5;q.p.show=false});selOn=true;selStart=performance.now()}
+$("#selBtn").onclick=runSel;$("#selBtn2").onclick=runSel;
+scene.preRender.addEventListener(()=>{const now=performance.now(),dt=Math.min(.1,(now-lastT)/1000);lastT=now;if(!selOn)return;
+  const el=(now-selStart)/1000;
+  part.forEach((q,i)=>{q.t=Math.min(q.stop,q.t+dt*q.sp);if(q.t<0){q.p.show=false;return}
+    const a=at(q.t),spread=q.o*(.0016*(1-q.t*.6));
+    const lat=a.lat+dLat/nl*spread,lng=a.lng+dLng/nl*spread;const pile=q.t>=q.stop-.001?(1-q.stop)*120:0;
+    q.p.position=C.Cartesian3.fromDegrees(lng,lat,a.h+6+pile+Math.sin(el*5+i)*2);q.p.show=el<22});
+  if(el>22){selOn=false;part.forEach(q=>q.p.show=false);hideCap()}});
+
+/* басқа */
+$("#downBtn").onclick=()=>$("#research").scrollIntoView({behavior:reduce?"auto":"smooth"});
+
+/* бастау: ғарыштан Алматыға */
+cam.setView({destination:C.Cartesian3.fromDegrees(76.9,43.0,1800000),orientation:{heading:0,pitch:C.Math.toRadians(-90),roll:0}});
+setTimeout(()=>{$("#loading").style.opacity=0;setTimeout(()=>$("#loading").remove(),700);goHome(reduce?0:6);setTimeout(sampleGround,6500)},800);
+})();
+
+</script>
+</body>
+</html>
